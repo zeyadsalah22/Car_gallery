@@ -12,17 +12,17 @@ public class Client extends User{
     }
 
     public void buyCar(Car c){
-        if(c.price > this.budget){
+        if(c.getPrice() > this.budget){
             System.out.printf("""
             Not enough money to buy the car
             Needed: %f
             Had: %f
-            """,c.price,this.budget);
+            """,c.getPrice(),this.budget);
             return;
         }
         System.out.println("Car is bought successfully!");
         this.car.getCopy(c);
-        this.budget -= car.price;
+        this.budget -= car.getPrice();
     }
     public void sellCar(){
         if(this.car == null){
@@ -30,7 +30,7 @@ public class Client extends User{
             return;
         }
         System.out.println("Car is sold successfully!");
-        this.budget += this.car.price;
+        this.budget += this.car.getPrice();
         this.car = null;
     }
 
