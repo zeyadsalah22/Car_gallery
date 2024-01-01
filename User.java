@@ -1,9 +1,9 @@
-public class User {
-    String firstName;
-    String lastName;
-    int age;
-    int id;
-    boolean married;
+public abstract class User {
+        String firstName;
+        String lastName;
+        int age;
+        int id;
+        boolean married;
 
     public User() {
 
@@ -56,12 +56,5 @@ public class User {
     public void setMarried(boolean married) {
         this.married = married;
     }
-    public void displayUser(){
-        System.out.printf("""
-                First Name: %s
-                Last Name: %s
-                Age: %d
-                Married: %b
-                """,this.getFirstName(), this.getLastName(), this.getAge(), this.isMarried());
-    }
+    public abstract void displayUser();
 }
