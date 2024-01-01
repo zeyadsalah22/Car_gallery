@@ -1,10 +1,7 @@
 public class Client extends User{
-    Car car;
+    private Car car;
 
     double budget;
-    Client(){
-        car = null;
-    }
     public Client(String firstName, String lastName, int age, int id, boolean married, Car car, double budget) {
         super(firstName, lastName, age, id, married);
         this.car.getCopy(car);
