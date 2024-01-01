@@ -37,8 +37,6 @@ public class Client extends User{
     @Override
     public void displayUser() {
         super.displayUser();
-        System.out.printf("""
-                Car: %s
-                """,this.car);
+        this.car.displayCar();
     }
 }
