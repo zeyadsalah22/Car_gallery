@@ -1,11 +1,9 @@
-import com.sun.security.ntlm.Client;
-
 import java.util.*;
-Scanner k = new Scanner(System.in);
 public class Management_System {
     private static ArrayList<Employee> staff = new ArrayList<Employee>();
     private static ArrayList<Client> clients = new ArrayList<Client>();
     private static ArrayList<Car> goods = new ArrayList<Car>();
+    static Scanner k = new Scanner(System.in);
     private static double budget;
 
     public static void displayStaff(){
@@ -28,7 +26,7 @@ public class Management_System {
     }
     public static void addUser(){
         System.out.println("Enter e for Employee and c for Clients");
-        char x = k.next();
+        String x = k.next();
         System.out.println("Enter First Name");
         String first = k.next();
         System.out.println("Enter Second Name");
@@ -37,35 +35,35 @@ public class Management_System {
         int age = k.nextInt();
         System.out.println("Are you married?");
         boolean marrried = k.nextBoolean();
-        if (x=='e')
-            this.addEmployee(first,second,age,marrried);
+        if (x.charAt(0) =='e')
+            addEmployee(first,second,age,marrried);
         else
-            this.addClient(first,second,age,marrried);
+            addClient(first,second,age,marrried);
     }
-    public static void addEmployee(String first,String second,int age,boolean marrried){
+    public static void addEmployee(String first,String second,int age,boolean married){
         System.out.println("Enter Position");
         String position = k.next();
         System.out.println("Enter Salary");
         double salary = k.nextDouble();
-        Employee e = new Employee(first,second,age,marrried,position,salary,0,staff.size()+1);
+        Employee e = new Employee(first,second,age,married,position,salary,0,staff.size()+1);
         staff.add(e);
     }
-    public static void addClient(String first,String second,int age,boolean marrried){
+    public static void addClient(String first,String second,int age,boolean married){
         System.out.println("Enter budget");
         double budget = k.nextDouble();
         Client c = new Client(first,second,age,clients.size()+1,married,null,budget);
-        clients.add(e);
+        clients.add(c);
     }
     public static void addCar(){
         System.out.println("Enter car's brand");
         String brand = k.next();
         System.out.println("Enter car's model");
-        String model = k.next.model();
+        String model = k.next();
         System.out.println("Enter car's price");
         double price = k.nextDouble();
         budget-=price;
         Car c = new Car(brand,model,price*(1.1));
-        clients.add(e);
+        goods.add(c);
     }
     public static void updateClient();
     public static void updateEmplyee();

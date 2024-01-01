@@ -33,9 +33,9 @@ public class Car {
     }
 
     public void getCopy(Car c2){
-        c2.brand = this.brand;
-        c2.model = this.model;
-        c2.price = this.price;
+        this.brand = c2.brand;
+        this.model = c2.model;
+        this.price = c2.price;
     }
 
     public void displayCar(){

@@ -33,7 +33,11 @@ public class Client extends User{
 
     @Override
     public void displayUser() {
-        super.displayUser();
+        System.out.printf("""
+                First Name: %s
+                Last Name: %s
+                Age: %d
+                """,super.firstName, super.lastName, super.age);
         this.car.displayCar();
     }
 }

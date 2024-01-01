@@ -48,12 +48,14 @@ public class Employee extends User{
     }
 
     public void displayUser(){
-        super.displayUser();
         System.out.printf("""
+                First name: %s
+                Second Name: %s
+                Age: %d
                 Position: %s
                 Salary: %f
                 Days attend: %d
                 Expected Salary: %f
-                """,this.position, this.salary, this.daysAttend, this.calculateSalary());
+                """,super.getFirstName(), super.getLastName(),super.getAge(),this.position, this.salary, this.daysAttend, this.calculateSalary());
     }
 }
