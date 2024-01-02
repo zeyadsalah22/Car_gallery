@@ -18,24 +18,18 @@ public class Main {
             if(option > '4' || option < '1')
                 break;
             System.out.println("""
-                    choose the department
-                    c / C for Clients
-                    e / E for Employees
-                    r / R for Cars
+                  choose the department
+                  c / C for Clients
+                  e / E for Employees
+                  r / R for Cars
                   """);
             char department = sc.next().charAt(0);
-            switch(option) {
-                case '1':
-                    Management_System.selectAddDepartment(department);
-                case '2':
-                    Management_System.selectDisplayDepartment(department);
-                case '3':
-                    Management_System.selectUpdateDepartment(department);
-                case '4':
-                    Management_System.selectDeleteDepartment(department);
-                default:
-                    program = false;
-                    break;
+            switch (option) {
+                case '1' -> Management_System.selectAddDepartment(department);
+                case '2' -> Management_System.selectDisplayDepartment(department);
+                case '3' -> Management_System.selectUpdateDepartment(department);
+                case '4' -> Management_System.selectDeleteDepartment(department);
+                default -> program = false;
             }
 
         }
