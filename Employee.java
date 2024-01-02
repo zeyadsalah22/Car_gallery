@@ -5,9 +5,12 @@ public class Employee extends User{
     Employee(){
 
     }
-
-    public Employee(String firstName, String lastName, int age, boolean married, String position, double salary, int daysAttend, int id) {
+    public Employee(String firstName, String lastName, int age,int id, boolean married){
         super(firstName, lastName, age, id, married);
+    }
+
+    public Employee(String firstName, String lastName, int age,int id, boolean married, String position, double salary, int daysAttend) {
+        this(firstName, lastName, age, id, married);
         this.position = position;
         this.salary = salary;
         this.daysAttend = daysAttend;

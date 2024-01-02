@@ -38,7 +38,7 @@ public class Car {
         this.price = c2.price;
     }
 
-    public void displayCar(){
+    public void displayCar() {
         System.out.println("Car's brand: "+this.brand+", model: "+this.model+" and price:"+this.price);
     }
 
