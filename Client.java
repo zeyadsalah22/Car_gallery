@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Client extends User{
-    static Scanner sc = new Scanner(System.in);
     private Car car = null;
 
     double budget;
@@ -51,11 +50,16 @@ public class Client extends User{
         System.out.println("Car is bought successfully!");
         this.car.getCopy(c);
         this.budget -= car.getPrice();
+        Management_System.budget+=c.getPrice();
+        Management_System.goods.remove(c);
     }
     public void sellCar(){
         if(!hasCar()) return;
         System.out.println("Car is sold successfully!");
         this.budget += this.car.getPrice();
+        Management_System.budget-=this.car.getPrice();
+        this.car.setPrice(this.car.getPrice()*1.1);
+        Management_System.goods.add(this.car);
         this.car = null;
     }
 

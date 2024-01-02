@@ -1,10 +1,10 @@
 import java.util.*;
 public class Management_System {
-    private static ArrayList<Employee> staff = new ArrayList<Employee>();
-    private static ArrayList<Client> clients = new ArrayList<Client>();
-    private static ArrayList<Car> goods = new ArrayList<Car>();
+    public static ArrayList<Employee> staff = new ArrayList<Employee>();
+    public static ArrayList<Client> clients = new ArrayList<Client>();
+    public static ArrayList<Car> goods = new ArrayList<Car>();
     static Scanner sc = new Scanner(System.in);
-    private static double budget;
+    public static double budget;
 
     private static int selectDepartment(char c){
         return switch (c) {
@@ -62,7 +62,7 @@ public class Management_System {
         String second = sc.next();
         System.out.println("Enter Age");
         int age = sc.nextInt();
-        System.out.println("Are you married?\nenter 1 for yes and 0 for no");
+        System.out.println("Are you married?\nenter true for yes and false for no");
         boolean married = sc.nextBoolean();
         if(client)
             return new Client(first, second, age,clients.size() + 1, married);
@@ -94,7 +94,7 @@ public class Management_System {
         System.out.println("Enter car's price");
         double price = sc.nextDouble();
         budget-=price;
-        Car c = new Car(brand,model,price*(1.1));
+        Car c = new Car(brand,model,price*(1.1),goods.size()+1);
         goods.add(c);
     }
 
@@ -143,7 +143,16 @@ public class Management_System {
                 clients.get(id).setMarried(sc.nextBoolean());
                 break;
             case '5':
-                System.out.println("enter the details for the car");
+                System.out.println("Choose the action you want:\n1)Buy car\n2)Sell car");
+                switch (sc.next().charAt(0)) {
+                    case '1':
+                        System.out.println("Choose the id of the car you want");
+                        displayCar();
+                        clients.get(id).buyCar(goods.get(sc.nextInt()));
+                        break;
+                    case '2':
+                        clients.get(id).sellCar();
+                }
                 
         }
 
