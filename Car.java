@@ -2,10 +2,20 @@ public class Car {
     private String brand;
     private String model;
     private double price;
-    public Car(String brand,String model,double price){
+    private int id;
+    public Car(String brand,String model,double price,int id){
         this.brand = brand;
         this.model = model;
         this.price = price;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getPrice() {
