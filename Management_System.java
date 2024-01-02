@@ -1,8 +1,8 @@
 import java.util.*;
 public class Management_System {
-    public static ArrayList<Employee> staff = new ArrayList<Employee>();
-    public static ArrayList<Client> clients = new ArrayList<Client>();
-    public static ArrayList<Car> goods = new ArrayList<Car>();
+    public static ArrayList<Employee> staff = new ArrayList<>();
+    public static ArrayList<Client> clients = new ArrayList<>();
+    public static ArrayList<Car> goods = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
     public static double budget;
 
@@ -25,23 +25,38 @@ public class Management_System {
             }
         }
     }
-    public static void displayStaff(){
+    public static boolean displayStaff(){
+        if(staff.isEmpty()){
+            System.out.println("No staff information to display");
+            return false;
+        }
         System.out.println("Our Staff:");
         for (Employee employee : staff) {
             employee.displayUser();
         }
+        return true;
     }
-    public static void displayClient(){
+    public static boolean displayClient(){
+        if(clients.isEmpty()){
+            System.out.println("No clients information to display");
+            return false;
+        }
         System.out.println("Our Clients:");
         for (Client client : clients) {
             client.displayUser();
         }
+        return true;
     }
-    public static void displayCar(){
+    public static boolean displayCar(){
+        if(goods.isEmpty()){
+            System.out.println("No cars available");
+            return false;
+        }
         System.out.println("Our Cars:");
         for (Car good : goods) {
             good.displayCar();
         }
+        return true;
     }
 
     public static void selectAddDepartment(char department) {
@@ -62,8 +77,18 @@ public class Management_System {
         String second = sc.next();
         System.out.println("Enter Age");
         int age = sc.nextInt();
-        System.out.println("Are you married?\nenter true for yes and false for no");
-        boolean married = sc.nextBoolean();
+        boolean married = false;
+        String resp;
+        do {
+            System.out.println("Are you married?\nenter yes or no");
+            resp = sc.next();
+            resp = resp.toLowerCase();
+            switch (resp) {
+                case "yes" -> married = true;
+                case "no" -> married = false;
+                default -> System.out.println("Invalid input!");
+            }
+        }while(!resp.equals("yes") && !resp.equals("no"));
         if(client)
             return new Client(first, second, age,clients.size() + 1, married);
         else
@@ -71,13 +96,14 @@ public class Management_System {
     }
     public static void addEmployee(){
         Employee e = (Employee) addUser(false);
-        System.out.println("Enter Position");
+        System.out.println("Enter Position (manager / salesperson)");
         String position = sc.next();
         System.out.println("Enter Salary");
         double salary = sc.nextDouble();
         e.setPosition(position);
         e.setSalary(salary);
         staff.add(e);
+        message("employee", "added");
     }
     public static void addClient(){
         Client c = (Client) addUser(true);
@@ -85,6 +111,7 @@ public class Management_System {
         double budget = sc.nextDouble();
         c.setBudget(budget);
         clients.add(c);
+        message("Client", "added");
     }
     public static void addCar(){
         System.out.println("Enter car's brand");
@@ -96,6 +123,7 @@ public class Management_System {
         budget-=price;
         Car c = new Car(brand,model,price*(1.1),goods.size()+1);
         goods.add(c);
+        message("car", "added");
     }
 
     public static void selectUpdateDepartment(char department) {
@@ -109,13 +137,15 @@ public class Management_System {
         }
     }
     public static void updateClient(){
-        System.out.println("Select the id of the client you want to update");
-        displayClient();
-        int id = sc.nextInt();
-        if(id < 0 || id > clients.size()) {
-            System.out.println("Invalid id!!\n");
+        if(!displayClient())
             return;
-        }
+        System.out.println("Select the id of the client you want to update");
+        int id = sc.nextInt();
+        id--;
+
+        if(checkInvalidID(clients.size(), id))
+            return;
+
         clients.get(id).displayUser();
         System.out.println("""
             choose the label you want to change
@@ -125,46 +155,51 @@ public class Management_System {
             4) married status
             5) car
             """);
-        switch (sc.next().charAt(0)){
-            case '1':
+        switch (sc.next().charAt(0)) {
+            case '1' -> {
                 System.out.println("Enter the first name");
                 clients.get(id).setFirstName(sc.next());
-                break;
-            case '2':
+            }
+            case '2' -> {
                 System.out.println("Enter the second name");
                 clients.get(id).setLastName(sc.next());
-                break;
-            case '3':
+            }
+            case '3' -> {
                 System.out.println("Enter the age");
                 clients.get(id).setAge(sc.nextInt());
-                break;
-            case '4':
+            }
+            case '4' -> {
                 System.out.println("married? 1 for yes, 0 for no");
                 clients.get(id).setMarried(sc.nextBoolean());
-                break;
-            case '5':
+            }
+            case '5' -> {
                 System.out.println("Choose the action you want:\n1)Buy car\n2)Sell car");
                 switch (sc.next().charAt(0)) {
-                    case '1':
+                    case '1' -> {
+                        if(!displayCar())
+                            return;
                         System.out.println("Choose the id of the car you want");
-                        displayCar();
-                        clients.get(id).buyCar(goods.get(sc.nextInt()));
-                        break;
-                    case '2':
-                        clients.get(id).sellCar();
+                        int carOption = sc.nextInt();
+                        carOption--;
+                        if (checkInvalidID(goods.size(), carOption))
+                            return;
+                        clients.get(id).buyCar(goods.get(carOption));
+                    }
+                    case '2' -> clients.get(id).sellCar();
                 }
-                
+            }
         }
-
+        message("client", "updated");
     }
     public static void updateEmployee(){
-        System.out.println("Select the id of the employee you want to update");
-        displayStaff();
-        int id = sc.nextInt();
-        if(id < 0 || id > staff.size()) {
-            System.out.println("Invalid id!!\n");
+        if(!displayStaff())
             return;
-        }
+        System.out.println("Select the id of the employee you want to update");
+        int id = sc.nextInt();
+        id--;
+        if(checkInvalidID(staff.size(), id))
+            return;
+
         staff.get(id).displayUser();
         System.out.println("""
             choose the label you want to change
@@ -203,15 +238,16 @@ public class Management_System {
                 break;
 
         }
+        message("employee", "updated");
     }
     public static void updateCar(){
-        System.out.println("Select the id of the car you want to update");
-        displayCar();
-        int id = sc.nextInt();
-        if(id < 0 || id > goods.size()) {
-            System.out.println("Invalid id!!\n");
+        if(!displayCar())
             return;
-        }
+        System.out.println("Select the id of the car you want to update");
+        int id = sc.nextInt();
+        id--;
+        if(checkInvalidID(goods.size(), id))
+            return;
         goods.get(id).displayCar();
         System.out.println("""
             choose the label you want to change
@@ -233,6 +269,7 @@ public class Management_System {
                 goods.get(id).setPrice(sc.nextDouble());
             }
         }
+        message("car", "updated");
     }
 
 
@@ -247,37 +284,66 @@ public class Management_System {
         }
     }
     public static void deleteClient(){
-        System.out.println("Select the id of the client you want to delete");
-        displayClient();
-        int id = sc.nextInt();
-        if(id < 0 || id > clients.size()) {
-            System.out.println("Invalid id!!\n");
+        if(!displayClient())
             return;
-        }
+        System.out.println("Select the id of the client you want to delete");
+        int id = sc.nextInt();
+        id--;
+        if(checkInvalidID(clients.size(), id))
+            return;
         clients.remove(clients.get(id));
-        System.out.println("The client has been deleted!");
+        updateIDS(clients);
+        message("Client", "deleted");
     }
     public static void deleteEmployee(){
-        System.out.println("Select the id of the employee you want to delete");
-        displayStaff();
-        int id = sc.nextInt();
-        if(id < 0 || id > staff.size()) {
-            System.out.println("Invalid id!!\n");
+        if(!displayStaff())
             return;
-        }
+        System.out.println("Select the id of the employee you want to delete");
+        int id = sc.nextInt();
+        id--;
+        if(checkInvalidID(staff.size(), id))
+            return;
         staff.remove(staff.get(id));
-        System.out.println("The employee has been deleted!");
+        updateIDS(staff);
+        message("employee", "deleted");
     }
     public static void deleteCar(){
-        System.out.println("Select the id of the car you want to delete");
-        displayCar();
-        int id = sc.nextInt();
-        if(id < 0 || id > goods.size()) {
-            System.out.println("Invalid id!!\n");
+        if(!displayCar())
             return;
-        }
+        System.out.println("Select the id of the car you want to delete");
+        int id = sc.nextInt();
+        id--;
+        if(checkInvalidID(goods.size(), id))
+            return;
         goods.remove(goods.get(id));
-        System.out.println("The car had been deleted!");
+        updateIDS(goods);
+        message("car", "deleted");
+    }
+
+    public static boolean checkInvalidID(int size , int id){
+        if(id < 0 || id >= size){
+            System.out.println("\nInvalid ID!!\n");
+            return true;
+        }
+        return false;
+    }
+    public static void message(String what, String operation){
+        System.out.printf("""
+                ===============================
+                the %s has been %s successfully
+                ===============================
+                """,what, operation);
+    }
+
+    public static void updateIDS(ArrayList<?> arr){
+        for(int i = 0; i < arr.size(); ++i) {
+            if (arr.get(i) instanceof Client)
+                ((Client) arr.get(i)).setId(i + 1);
+            else if(arr.get(i) instanceof Employee)
+                ((Employee)arr.get(i)).setId(i + 1);
+            else
+                ((Car)arr.get(i)).setId(i + 1);
+        }
     }
     
 }

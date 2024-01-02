@@ -18,10 +18,10 @@ public class Main {
             if(option > '4' || option < '1')
                 break;
             System.out.println("""
-                    choose the department
-                    c / C for Clients
-                    e / E for Employees
-                    r / R for Cars
+                  choose the department
+                  c / C for Clients
+                  e / E for Employees
+                  r / R for Cars
                   """);
             char department = sc.next().charAt(0);
             switch (option) {

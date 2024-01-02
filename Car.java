@@ -3,6 +3,7 @@ public class Car {
     private String model;
     private double price;
     private int id;
+    public Car(){}
     public Car(String brand,String model,double price,int id){
         this.brand = brand;
         this.model = model;
@@ -50,10 +51,13 @@ public class Car {
 
     public void displayCar() {
         System.out.printf("""
+                
+                ID: %d
                 brand: %s
                 model: %s
                 price: %f
-                """,this.brand, this.model, this.price);
+                
+                """,this.getId(), this.getBrand(), this.getModel(), this.getPrice());
 
     }
 

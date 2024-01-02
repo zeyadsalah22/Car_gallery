@@ -1,8 +1,5 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class Client extends User{
-    private Car car = null;
+    private Car car = new Car();
 
     double budget;
 
@@ -30,12 +27,12 @@ public class Client extends User{
         this.car.getCopy(car);
         this.budget = budget;
     }
-    public boolean hasCar(){
-        if(this.car == null){
+    public boolean hasNoCar(){
+        if(this.car.getBrand() == null){
             System.out.println("No car information is available!!\n");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void buyCar(Car c){
@@ -52,27 +49,30 @@ public class Client extends User{
         this.budget -= car.getPrice();
         Management_System.budget+=c.getPrice();
         Management_System.goods.remove(c);
+        Management_System.updateIDS(Management_System.goods);
     }
     public void sellCar(){
-        if(!hasCar()) return;
+        if(hasNoCar()) return;
         System.out.println("Car is sold successfully!");
         this.budget += this.car.getPrice();
         Management_System.budget-=this.car.getPrice();
         this.car.setPrice(this.car.getPrice()*1.1);
         Management_System.goods.add(this.car);
-        this.car = null;
+        this.car = new Car();
     }
 
     @Override
     public void displayUser() {
         System.out.printf("""
+            
             id: %d
             First Name: %s
             Last Name: %s
             Age: %d
             Married: %b
+            
             """,this.getId(),this.getFirstName(), this.getLastName(), this.getAge(), this.isMarried());
-        if(!hasCar())
+        if(hasNoCar())
             return;
         this.car.displayCar();
     }
