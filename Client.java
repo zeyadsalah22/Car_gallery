@@ -62,11 +62,12 @@ public class Client extends User{
     @Override
     public void displayUser() {
         System.out.printf("""
+            id: %d
             First Name: %s
             Last Name: %s
             Age: %d
             Married: %b
-            """,this.getFirstName(), this.getLastName(), this.getAge(), this.isMarried());
+            """,this.getId(),this.getFirstName(), this.getLastName(), this.getAge(), this.isMarried());
         if(!hasCar())
             return;
         this.car.displayCar();

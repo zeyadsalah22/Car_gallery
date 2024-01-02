@@ -39,7 +39,12 @@ public class Car {
     }
 
     public void displayCar() {
-        System.out.println("Car's brand: "+this.brand+", model: "+this.model+" and price:"+this.price);
+        System.out.printf("""
+                brand: %s
+                model: %s
+                price: %f
+                """,this.brand, this.model, this.price);
+
     }
 
 }
