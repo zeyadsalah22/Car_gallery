@@ -1,4 +1,4 @@
-public abstract class User {
+public abstract class User{
         String firstName;
         String lastName;
         int age;
@@ -56,5 +56,6 @@ public abstract class User {
     public void setMarried(boolean married) {
         this.married = married;
     }
-    public abstract void displayUser();
+
+    abstract public void displayUser();
 }

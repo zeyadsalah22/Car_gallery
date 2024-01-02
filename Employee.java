@@ -5,9 +5,12 @@ public class Employee extends User{
     Employee(){
 
     }
-
-    public Employee(String firstName, String lastName, int age, boolean married, String position, double salary, int daysAttend, int id) {
+    public Employee(String firstName, String lastName, int age,int id, boolean married){
         super(firstName, lastName, age, id, married);
+    }
+
+    public Employee(String firstName, String lastName, int age,int id, boolean married, String position, double salary, int daysAttend) {
+        this(firstName, lastName, age, id, married);
         this.position = position;
         this.salary = salary;
         this.daysAttend = daysAttend;
@@ -48,12 +51,14 @@ public class Employee extends User{
     }
 
     public void displayUser(){
-        super.displayUser();
         System.out.printf("""
+                First name: %s
+                Second Name: %s
+                Age: %d
                 Position: %s
                 Salary: %f
                 Days attend: %d
                 Expected Salary: %f
-                """,this.position, this.salary, this.daysAttend, this.calculateSalary());
+                """,super.getFirstName(), super.getLastName(),super.getAge(),this.position, this.salary, this.daysAttend, this.calculateSalary());
     }
 }

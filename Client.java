@@ -1,11 +1,42 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Client extends User{
-    private Car car;
+    static Scanner sc = new Scanner(System.in);
+    private Car car = null;
 
     double budget;
-    public Client(String firstName, String lastName, int age, int id, boolean married, Car car, double budget) {
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public double getBudget() {
+        return budget;
+    }
+
+    public void setBudget(double budget) {
+        this.budget = budget;
+    }
+
+    Client(String firstName, String lastName, int age, int id, boolean married){
         super(firstName, lastName, age, id, married);
+    }
+    public Client(String firstName, String lastName, int age, int id, boolean married, Car car, double budget) {
+        this(firstName, lastName, age, id, married);
         this.car.getCopy(car);
         this.budget = budget;
+    }
+    public boolean hasCar(){
+        if(this.car == null){
+            System.out.println("No car information is available!!\n");
+            return false;
+        }
+        return true;
     }
 
     public void buyCar(Car c){
@@ -22,10 +53,7 @@ public class Client extends User{
         this.budget -= car.getPrice();
     }
     public void sellCar(){
-        if(this.car == null){
-            System.out.println("Client doesn't have car!");
-            return;
-        }
+        if(!hasCar()) return;
         System.out.println("Car is sold successfully!");
         this.budget += this.car.getPrice();
         this.car = null;
@@ -33,7 +61,14 @@ public class Client extends User{
 
     @Override
     public void displayUser() {
-        super.displayUser();
+        System.out.printf("""
+            First Name: %s
+            Last Name: %s
+            Age: %d
+            Married: %b
+            """,this.getFirstName(), this.getLastName(), this.getAge(), this.isMarried());
+        if(!hasCar())
+            return;
         this.car.displayCar();
     }
 }
