@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="24b7da5b-2976-43e2-acb2-f13e70b21cbe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Car_gallery/Car.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Car_gallery/Car.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Car_gallery/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Car_gallery/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Car_gallery/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Car_gallery/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Car_gallery/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Car_gallery/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Car_gallery/Management_System.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Car_gallery/Management_System.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +44,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "zeyad's",
@@ -67,6 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1704133574864</updated>
       <workItem from="1704133576165" duration="5670000" />
+      <workItem from="1704272437674" duration="1815000" />
     </task>
     <servers />
   </component>
