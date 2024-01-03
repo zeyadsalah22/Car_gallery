@@ -52,6 +52,8 @@ public class Employee extends User{
 
     public void displayUser(){
         System.out.printf("""
+                
+                ID: %d
                 First name: %s
                 Second Name: %s
                 Age: %d
@@ -59,6 +61,7 @@ public class Employee extends User{
                 Salary: %f
                 Days attend: %d
                 Expected Salary: %f
-                """,super.getFirstName(), super.getLastName(),super.getAge(),this.position, this.salary, this.daysAttend, this.calculateSalary());
+                
+                """,this.getId(), super.getFirstName(), super.getLastName(),super.getAge(),this.position, this.salary, this.daysAttend, this.calculateSalary());
     }
 }

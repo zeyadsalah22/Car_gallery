@@ -2,10 +2,21 @@ public class Car {
     private String brand;
     private String model;
     private double price;
-    public Car(String brand,String model,double price){
+    private int id;
+    public Car(){}
+    public Car(String brand,String model,double price,int id){
         this.brand = brand;
         this.model = model;
         this.price = price;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getPrice() {
@@ -39,7 +50,15 @@ public class Car {
     }
 
     public void displayCar() {
-        System.out.println("Car's brand: "+this.brand+", model: "+this.model+" and price:"+this.price);
+        System.out.printf("""
+                
+                Car's ID: %d
+                brand: %s
+                model: %s
+                price: %f
+                
+                """,this.getId(), this.getBrand(), this.getModel(), this.getPrice());
+
     }
 
 }
