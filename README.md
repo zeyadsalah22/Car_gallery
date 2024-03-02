@@ -6,9 +6,7 @@ The Car Gallery Management System is a Java-based application designed to stream
 - [Introduction](#introduction)
 - [Features](#features)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
+- 
 ## Introduction
 The Car Gallery Management System simplifies the process of managing clients, employees, and car inventory. Whether you're a car showroom owner or an administrator, this system provides essential tools for efficient data organization and decision-making.
 
@@ -46,18 +44,8 @@ The Car Gallery Management System simplifies the process of managing clients, em
    - Update car details (e.g., price, model).
    - Handle car purchases and sales.
 
-## Contributing
-Contributions are welcome! If you find any issues or have suggestions for improvements, feel free to create a pull request.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 *Note: This README provides a high-level overview. For detailed implementation, refer to the actual code files.* 🚗🏢👍
 
-Source: Conversation with Bing, 3/2/2024
-(1) car-showroom-management-system · GitHub Topics · GitHub. https://github.com/topics/car-showroom-management-system.
-(2) GitHub - tangkn/Car-Gallery-Management-System. https://github.com/tangkn/Car-Gallery-Management-System.
-(3) Vehicle Management System Project In Java With Source Code. https://itsourcecode.com/free-projects/java-projects/vehicle-management-system-project-in-java-with-source-code/.
-(4) Car Showroom Management System in Java using JSP, Servlet and MYSQL. https://codebun.com/car-showroom-management-system-in-java-using-jsp-servlet-and-mysql/.
